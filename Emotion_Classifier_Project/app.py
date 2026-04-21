@@ -1,9 +1,12 @@
-import streamlit as st
+import os
 import joblib
+import streamlit as st
 
 @st.cache_resource
 def load_model():
-    return joblib.load("emotion_classifier.joblib")
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    model_path = os.path.join(base_dir, "emotion_classifier.joblib")
+    return joblib.load(model_path)
 
 model = load_model()
 
